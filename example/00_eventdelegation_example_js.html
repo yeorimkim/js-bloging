@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Event Delegation Example : Javascript</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/blog.css">
+<style>
+.list_wrap {
+padding: 15px;
+border: 1px solid #ddd;
+background: #efefef;
+}
+.list {
+	padding-left: 20px;
+}
+.list a {
+display: inline-block;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 4px;
+background: #fff;
+color: #666;
+}
+.list li {
+margin-top:5px;
+box-sizing: border-box;
+/* background: #e499b8; */
+list-style-type: disc;
+}
+.btn {
+margin-top: 15px;
+padding: 10px;
+background: white;
+border: 1px solid #ddd;
+cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="list_wrap">
+		<ul class="list">
+			<li><a href="#">link</a></li>
+			<li><a href="#">link</a></li>
+			<li><a href="#">link</a></li>
+		</ul>
+	</div>
+	<button type="button" class="btn">리스트 추가</button>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(function () {
+	// $('ul').on('click', function (e) {
+	// 	e.stopPropagation();
+	// 	alert('click');
+	// 	console.log('222');
+	// 	console.log(e.currentTarget);
+	// 	console.log(e.target);
+	// 	console.log(e.delegateTarget);
+	// 	console.log($(this));
+	// });
+	$('body').on('click', function (e) {
+		// e.stopPropagation();
+		// alert('click');
+		console.log('222');
+		// console.log(e.currentTarget);
+		// console.log(e.target);
+		// console.log(e.delegateTarget);
+		// console.log($(this));
+	});
+	// $('ul').on('click', 'a', function (e) {
+	// 	console.log('222');
+	// 	console.log(e.currentTarget);
+	// 	console.log(e.target);
+	// 	console.log(e.delegateTarget);
+	// 	console.log($(this));
+	// });
+	// var example = {
+	// 	opts : {
+			
+	// 	},
+	// 	init : function () {
+	// 		this.setElements();
+	// 		this.bindEvents();
+	// 	},
+	// 	setElements : function () {
+
+	// 	},
+	// 	bindEvents : function () {
+
+	// 	}
+	// }
+	// example.init();
+});
+</script>
+</body>
+</html>

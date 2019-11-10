@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Javascript</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@1.0/nanumbarungothicsubset.css">
+<link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+<main class="wrap">
+	<h1 class="title">Event Delegation / ChangeEvents</h1>
+	<p class="desc"></p>
+	<section class="section">
+		<h2 class="section_tit">Event Delegation (이벤트 위임)</h2>
+		<!-- <p class="desc">자식 요소에 각각 이벤트를 붙이지 않고, 부모 요소에서 자식 요소의 이벤트를 제어한다.</p> -->
+		<p class="desc">이벤트 버블링을 활용하여 자식 요소에 개별적으로 이벤트 리스너를 등록하지 않고, 부모 요소에 이벤트 리스너를 등록해 주는 것을 말합니다.</p>
+		<div class="code_wrap">
+			<code>
+				&lt;ul&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;&lt;/a&gt;&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;&lt;/a&gt;&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;&lt;/a&gt;&lt;/li&gt;<br>
+				&lt;/ul&gt;
+			</code>
+		</div>
+		<div class="code_wrap">
+			<code class="note">
+				// 자식 요소에 이벤트 바인딩 <br>
+				// $('a').on('click', function (){ <br>
+				// &nbsp;&nbsp;&nbsp;&nbsp;... <br>
+				// });<br>
+			</code>
+			<code>
+				<br>
+				$('<span class="point">ul</span>').on('click', <span class="point">'a'</span>, function (){ <br>
+				&nbsp;&nbsp;&nbsp;&nbsp;... <br>
+				});<br>
+			</code>
+		</div>
+		<blockquote class="example">
+			<strong class="example_tit">Example</strong>
+			<p class="desc">이벤트 위임을 사용해 링크 클릭</p>
+			<div class="btn_area">
+				<a href="./example/00_eventdelegation_example.html" target="_blank" class="btn_example">Example Code</a>
+			</div>
+		</blockquote>
+		<blockquote class="notice">
+			<p class="notice_desc">미리 알아두면 좋을 개념</p>
+			<ul class="notice_list">
+				<li>Event Propagation(이벤트 전파)</li>
+				<li>Event Bubbling(이벤트 버블링): 자식 요소에서 발생한 이벤트가 부모 요소로 전파되는 것</li>
+				<li>Event Capturing(이벤트 캡처링): 자식 요소에서 발생한 이벤트가 부모 요소부터 시작하여 이벤트를 발생시킨 자식 요소까지 도달하는 것</li>
+			</ul>
+			<p class="notice_link"><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#Event_bubbling_and_capture" target="_blank">버블링과 캡처링</a></p>
+		</blockquote>
+		<article class="article">
+			<h3 class="article_tit">[Why use it]</h3>
+			<div class="box">
+				<p class="desc">동적으로 요소가 추가되는 경우, 추가되는 요소는 DOM에 존재하지 않으므로 <strong>모든 요소에 각각 이벤트 리스너를 등록해줘야 합니다</strong>. 이는 번거로운 작업일 뿐 아니라 메모리 낭비가 일어나 실행 속도가 저하되는 요인이 됩니다. 이와 같은 경우를 해결하기 위해 이벤트 위임을 사용합니다.</p>
+			</div>
+		</article>
+		<article class="article">
+			<h3 class="article_tit">[How to use]</h3>
+			<div class="box">
+				<h4 class="box_title">jQuery 에서의 이벤트 위임</h4>
+				<p class="desc">.</p>
+				<h4 class="box_title">Javascript 에서의 이벤트 위임</h4>
+				<p class="desc"></p>
+			</div>
+		</article>
+	</section>
+	<!-- <section class="section">
+		<div class="code_wrap">
+			<pre>
+        <code>
+    &lt;div class="wrap"&gt;
+        &lt;div class="list_wrap"&gt;
+            &lt;ul class="list"&gt;
+                &lt;li&gt;&lt;a href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;4&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;button type="button" class="btn"&gt;리스트 추가&lt;/button&gt;
+    &lt;/div&gt;
+        </code></pre>
+		</div>
+	</section> -->
+</main>
+</body>
+</html>
