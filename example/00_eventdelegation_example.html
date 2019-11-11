@@ -115,17 +115,21 @@ $(function () {
 			this.listChild = this.list.children();
 		},
 		bindEvents : function () {
-			this.list.on('click', 'a', $.proxy(this.clickFunc, this));
+			this.obj.on('click', 'a', $.proxy(this.clickFunc, this));
 		},
 		clickFunc : function (e) {
-      e.preventDefault();
+      	e.preventDefault();
 			var target = $(e.currentTarget),
 				targetParent = target.closest('li'),
 				activeClass = this.opts.activeClass;
 			this.listChild.not(targetParent).removeClass(activeClass);
-      targetParent.addClass(activeClass);
-      console.log(targetParent.index());
-		},
+			console.log(e.currentTarget);
+			console.log(e.target);
+			console.log($(this));
+			console.log(e.delegateTarget);
+		targetParent.addClass(activeClass);
+		console.log(targetParent.index());
+		}
 	}
 	example.init();
 });
