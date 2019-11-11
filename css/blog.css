@@ -179,15 +179,16 @@ code, .code {
 	margin: 15px auto;
 }
 .btn_example {
-	display: inline-block;
+  display: inline-block;
 	padding: 2px 8px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	font-size: 13px;
 	color: #4d5256;
-	line-height: 26px;
+  line-height: 26px;
 }
 .btn_example:hover {
+  background: #e4f0f5;
 	text-decoration: none;
 }
 .btn_example:after {
