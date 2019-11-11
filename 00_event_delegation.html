@@ -72,9 +72,9 @@
 				<div class="code_wrap">
 					<code class="note">
 						// 자식 요소에 이벤트 바인딩 <br>
-						// $('ul a').on('click', function (){ <br>
-						// &nbsp;&nbsp;&nbsp;&nbsp;
-						// });<br><br>
+						$('ul a').on('click', function (){ <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;... <br>
+						});<br><br>
 					</code>
 					<code>
 						$('<span class="point">ul</span>').on('click', <span class="point">'a'</span>, function (event){ <br>
@@ -93,7 +93,7 @@
 					<ul class="notice_list">
 						<li><span class="code">this</span>와 <span class="code">currentTarget</span>은 동일합니다. (단, $.proxy 를 사용하거나 scope가 다를 경우 <span class="code">this</span>는 제공된 컨텍스트와 동일해집니다.)</li>
 						<li>위임되지 않은 이벤트의 경우 <span class="code">delegateTarget</span> 과 <span class="code">currentTarget</span> 은 동일합니다.</li>
-						<li><span class="code">event.delegateTarget</span>은 jQuery 에서만 사용할 수 있습니다.</li>
+						<li><span class="code">delegateTarget</span>은 jQuery 에서만 사용할 수 있습니다.</li>
 					</ul>
 				</blockquote>
 				<h4 class="box_title">Javascript 에서의 이벤트 위임</h4>
@@ -107,13 +107,13 @@
 					</code>
 					<code>
 						<span class="point">document.querySelector('ul')</span>.addEventListener('click', function(event) {<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;if (e.target && e.target.nodeName === '<span class="point">A</span>') {<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;if (event.target && event.target.nodeName === '<span class="point">A</span>') {<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(event.target) <span class="note">// a</span> <br>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(event.currentTarget) <span class="note">// ul</span> <br>
 							&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 						});<br><br>
 						<span class="point">document.querySelector('table')</span>.addEventListener('click', function(event) {<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;if (e.target && e.target.nodeName === '<span class="point">TD</span>') {<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;if (event.target && event.target.nodeName === '<span class="point">TD</span>') {<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 						});
