@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Event Delegation Example : Javascript</title>
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@1.0/nanumbarungothicsubset.css">
 <link rel="stylesheet" href="../css/blog.css">
+<link rel="stylesheet" href="../css/highlightsjs-styles/atom-one-dark-reasonable.css">
 <style>
 .list_wrap {
 padding: 15px;
@@ -27,8 +28,12 @@ color: #666;
 .list li {
 margin-top:5px;
 box-sizing: border-box;
-/* background: #e499b8; */
 list-style-type: disc;
+}
+.list .is-selected a {
+	border-color: #c471ce;
+  font-weight: bold;
+  color: #c471ce;
 }
 .btn {
 margin-top: 15px;
@@ -41,59 +46,108 @@ cursor: pointer;
 </head>
 <body>
 <div class="wrap">
+  <h1 class="title">Event Delegation Example2</h1>
+  <h2 class="sub_title">1) Example</h2>
 	<div class="list_wrap">
 		<ul class="list">
 			<li><a href="#">link</a></li>
 			<li><a href="#">link</a></li>
 			<li><a href="#">link</a></li>
 		</ul>
-	</div>
-	<button type="button" class="btn">리스트 추가</button>
+  </div>
+  <button type="button" class="btn">리스트 추가</button>
+  <h2 class="sub_title">2) Code</h2>
+	<div class="example_code_wrap"><pre><code class="html">&lt;div class="list_wrap"&gt;
+    &lt;ul class="list"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;link&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;link&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;link&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre></div>
+<div class="example_code_wrap"><pre><code class="js">var example = {
+    opts : {
+        obj : '.list_wrap',
+        list : '.list',
+        activeClass : 'is-selected'
+    },
+    init : function () {
+        this.setElements();
+        this.bindEvents();
+    },
+    setElements : function () {
+        this.obj = $(this.opts.obj);
+        this.list = this.obj.find(this.opts.list);
+        this.listChild = this.list.children();
+    },
+    bindEvents : function () {
+        // a(자식)가 아닌 ul(부모)에 이벤트 바인딩
+        this.list.on('click', 'a', $.proxy(this.clickFunc, this));
+    },
+    clickFunc : function (e) {
+        e.preventDefault();
+        var target = $(e.currentTarget),
+            targetParent = target.closest('li'),
+            activeClass = this.opts.activeClass;
+        this.listChild.not(targetParent).removeClass(activeClass);
+        targetParent.addClass(activeClass);
+        console.log(targetParent.index()); // 클릭한 인덱스
+    },
+}
+example.init();</code></pre></div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../js/libs/highlight.pack.js"></script>
 <script>
+hljs.initHighlightingOnLoad();
 $(function () {
-	// $('ul').on('click', function (e) {
-	// 	e.stopPropagation();
-	// 	alert('click');
-	// 	console.log('222');
-	// 	console.log(e.currentTarget);
-	// 	console.log(e.target);
-	// 	console.log(e.delegateTarget);
-	// 	console.log($(this));
-	// });
-	$('body').on('click', function (e) {
-		// e.stopPropagation();
-		// alert('click');
-		console.log('222');
-		// console.log(e.currentTarget);
-		// console.log(e.target);
-		// console.log(e.delegateTarget);
-		// console.log($(this));
-	});
-	// $('ul').on('click', 'a', function (e) {
-	// 	console.log('222');
-	// 	console.log(e.currentTarget);
-	// 	console.log(e.target);
-	// 	console.log(e.delegateTarget);
-	// 	console.log($(this));
-	// });
-	// var example = {
-	// 	opts : {
-			
-	// 	},
-	// 	init : function () {
-	// 		this.setElements();
-	// 		this.bindEvents();
-	// 	},
-	// 	setElements : function () {
+	var example = {
+		opts : {
+			obj : '.wrap',
+      list : '.list',
+      addBtn : '.btn',
+			activeClass : 'is-selected'
+		},
+		init : function () {
+			this.setElements();
+			this.bindEvents();
+		},
+		setElements : function () {
+			this.obj = $(this.opts.obj);
+			this.list = this.obj.find(this.opts.list);
+      this.listChild = this.list.children();
+      this.addBtn = this.obj.find(this.opts.addBtn);
+		},
+		bindEvents : function () {
+      this.obj.on('click', 'a', $.proxy(this.clickFunc, this));
+      this.obj.on('click', this.opts.addBtn, $.proxy(this.addListFunc, this));
+		},
+		clickFunc : function (e) {
+      e.preventDefault();
+			var target = $(e.currentTarget),
+				targetParent = target.closest('li'),
+				activeClass = this.opts.activeClass;
+			this.listChild.not(targetParent).removeClass(activeClass);
+      targetParent.addClass(activeClass);
+      console.log(targetParent.index());
+    },
+    addListFunc : function (e) {
+      this.list.append('<li><a href="#">link</a></li>');
+      if (this.listChild.length) {
+        this.listChild.length ++;
+      }
+      // var arr = [],
+      //     textHtml = '<li><a href="#">link</a></li>'
+      // for (var i = 0; i <= this.listChild.length; i++) {
+      //   arr[i].push(textHtml);
+      //   console.log(arr)
+      //   this.list.append(arr[i].join(''));
+      // }
+      // console.log(this.listChild.length)
+      // console.log(this.listChild.length)
 
-	// 	},
-	// 	bindEvents : function () {
-
-	// 	}
-	// }
-	// example.init();
+    }
+	}
+	example.init();
 });
 </script>
 </body>

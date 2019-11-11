@@ -26,14 +26,7 @@
 			</code>
 		</div>
 		<div class="code_wrap">
-			<code class="note">
-				// 자식 요소에 이벤트 바인딩 <br>
-				// $('a').on('click', function (){ <br>
-				// &nbsp;&nbsp;&nbsp;&nbsp;... <br>
-				// });<br>
-			</code>
 			<code>
-				<br>
 				$('<span class="point">ul</span>').on('click', <span class="point">'a'</span>, function (){ <br>
 				&nbsp;&nbsp;&nbsp;&nbsp;... <br>
 				});<br>
@@ -41,7 +34,8 @@
 		</div>
 		<blockquote class="example">
 			<strong class="example_tit">Example</strong>
-			<p class="desc">이벤트 위임을 사용해 링크 클릭</p>
+			<p class="desc">list 안의 a 링크 클릭을 이벤트 위임을 사용해 구현</p>
+			<div class="img_area"><img src="./img/example1.gif" alt="예제"></div>
 			<div class="btn_area">
 				<a href="./example/00_eventdelegation_example.html" target="_blank" class="btn_example">Example Code</a>
 			</div>
@@ -59,36 +53,62 @@
 			<h3 class="article_tit">[Why use it]</h3>
 			<div class="box">
 				<p class="desc">동적으로 요소가 추가되는 경우, 추가되는 요소는 DOM에 존재하지 않으므로 <strong>모든 요소에 각각 이벤트 리스너를 등록해줘야 합니다</strong>. 이는 번거로운 작업일 뿐 아니라 메모리 낭비가 일어나 실행 속도가 저하되는 요인이 됩니다. 이와 같은 경우를 해결하기 위해 이벤트 위임을 사용합니다.</p>
+				<blockquote class="example">
+					<strong class="example_tit">Example</strong>
+					<p class="desc">list 의 li 가 동적으로 추가되는 리스트 구현</p>
+					<div class="img_area"><img src="./img/example1.gif" alt="예제"></div>
+					<div class="btn_area">
+						<a href="./example/00_eventdelegation_example_jquery.html" target="_blank" class="btn_example">Example Code</a>
+					</div>
+				</blockquote>
 			</div>
 		</article>
 		<article class="article">
 			<h3 class="article_tit">[How to use]</h3>
 			<div class="box">
 				<h4 class="box_title">jQuery 에서의 이벤트 위임</h4>
-				<p class="desc">.</p>
+				<p class="desc"></p>
+				<div class="code_wrap">
+					<code class="note">
+						// 자식 요소에 이벤트 바인딩 <br>
+						// $('ul a').on('click', function (){ <br>
+						// &nbsp;&nbsp;&nbsp;&nbsp;... <br>
+						// });<br><br>
+					</code>
+					<code>
+						$('<span class="point">ul</span>').on('click', <span class="point">'a'</span>, function (){ <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;... <br>
+						});<br><br>
+						$('<span class="point">table</span>').on('click', '<span class="point">td</span>', function () {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+						});
+					</code>
+				</div>
 				<h4 class="box_title">Javascript 에서의 이벤트 위임</h4>
 				<p class="desc"></p>
+				<div class="code_wrap">
+					<code class="note">
+						// 자식 요소에 이벤트 바인딩 <br>
+						document.querySelectorAll('a').addEventListener('click', function(e) {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+						});<br><br>
+					</code>
+					<code>
+						<span class="point">document.querySelector('ul')</span>.addEventListener('click', function(e) {<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;if (e.target && e.target.nodeName === '<span class="point">A</span>') {<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+						});<br><br>
+						<span class="point">document.querySelector('table')</span>.addEventListener('click', function(e) {<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;if (e.target && e.target.nodeName === '<span class="point">TD</span>') {<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+						});
+					</code>
+				</div>
 			</div>
 		</article>
 	</section>
-	<!-- <section class="section">
-		<div class="code_wrap">
-			<pre>
-        <code>
-    &lt;div class="wrap"&gt;
-        &lt;div class="list_wrap"&gt;
-            &lt;ul class="list"&gt;
-                &lt;li&gt;&lt;a href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;4&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-        &lt;button type="button" class="btn"&gt;리스트 추가&lt;/button&gt;
-    &lt;/div&gt;
-        </code></pre>
-		</div>
-	</section> -->
 </main>
 </body>
 </html>
