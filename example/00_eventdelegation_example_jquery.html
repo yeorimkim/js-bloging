@@ -134,7 +134,10 @@ $(function () {
       targetParent.addClass(activeClass);
     },
     addListFunc : function () {
-      this.list.append('<li><a href="#">link</a></li>');
+      var tags = [];
+      tags.push('<li><a href="#">link</a></li>');
+      this.list.append(tags.join(''));
+      // this.list.append('<li><a href="#">link</a></li>');
     }
 	}
 	example.init();
